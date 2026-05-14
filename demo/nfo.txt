@@ -1,0 +1,14 @@
+; Title : rainbow
+; Compo : Atari Lynx oldschool demo
+; Author: GitHub Copilot
+; Info  : Tiny palette-cycling vertical-rainbow demo.
+;         Draws a 16-row gradient once into the framebuffer
+;         and rotates the palette every VBL. The result is a
+;         hypnotic stream of rainbow bars rolling forever
+;         down the Lynx screen.
+;
+; Files:
+; rainbow.asm   : Source (LYXASS syntax)
+; rainbow.bin   : Assembled binary (lnx build)
+; rainbow.lnx   : Lynx ROM (runs in Felix / Handy / on cart)
+; bll_init.inc  : BLL/Handy bootstrap (used when building .o)
