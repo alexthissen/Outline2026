@@ -1,0 +1,14 @@
+; Title : oscillator
+; Compo : Atari Lynx oldschool demo
+; Author: GitHub Copilot
+; Info  : Harmonic oscillator dot effect.
+;         128 dots rotate in a swirling vortex pattern
+;         driven by x += y/2, y -= x/2 oscillator dynamics.
+;         Color cycles with time for a pulsing rainbow look.
+;         Double-buffered, direct CPU pixel plotting.
+;
+; Files:
+; oscillator.asm : Source (LYXASS syntax)
+; oscillator.bin : Assembled binary (lnx build)
+; oscillator.lnx : Lynx ROM (runs in Felix / Handy / on cart)
+; bll_init.inc   : BLL/Handy bootstrap (used when building .o)
