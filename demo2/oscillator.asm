@@ -44,6 +44,10 @@ Start::
 	stz	MATHE_C+1
 	stz	MATHE_E
 
+	lda #$98
+	sta $fd20
+	sta $fd25
+
 ;;; Initialize 128 dots in a 16x8 grid
 ;;; x[i] = (i & 15) * 4 - 32   range: -32..28
 ;;; y[i] = (i >> 4) * 4 - 16   range: -16..12
@@ -197,6 +201,9 @@ main:
 	bpl	.dot
 
 	inc	frame
+
+	sta $fd24
+
 	jmp	main
 
 ;;; ----------------------------------------
