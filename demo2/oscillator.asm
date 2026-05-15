@@ -207,6 +207,7 @@ pal_bluered:
 	dc.b $00,$1d,$2b,$39,$47,$55,$63,$71,$17,$35,$53,$71,$9f,$bd,$db,$f8
 
 End:
+Size equ End-Start
 
 ;;; ----------------------------------------
  IFND LNX
@@ -217,4 +218,4 @@ End:
  IFND LNX
 	include "bll_init.inc"
  ENDIF
-	echo "Size: %d (End-Start)"
+	echo "Size: %dSize"

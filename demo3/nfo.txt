@@ -1,0 +1,13 @@
+; Title : scroller
+; Compo : Atari Lynx oldschool demo
+; Author: GitHub Copilot
+; Info  : Scrolling text wave demo.
+;         "OUTLINE2026" in a hand-crafted 4-pixel-tall font
+;         scrolls right to left while following a sine-wave
+;         path vertically. Double-buffered, direct CPU plotting.
+;
+; Files:
+; scroller.asm : Source (LYXASS syntax)
+; scroller.bin : Assembled binary (lnx build)
+; scroller.lnx : Lynx ROM (runs in Felix / Handy / on cart)
+; bll_init.inc : BLL/Handy bootstrap (used when building .o)

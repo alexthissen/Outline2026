@@ -8,6 +8,9 @@
 
  BEGIN_ZP
 frame 	ds 1
+ptr		ds 2		; screen address pointer
+offset	ds 1
+temp	ds 1
  END_ZP
 
 	if NEXT_ZP > 255
@@ -16,6 +19,7 @@ frame 	ds 1
 
 CENTERX	equ 80
 CENTERY	equ 51
+VID_BASE equ $20
 
 dot_x	equ $0400	; signed X offsets (128 bytes)
 dot_y	equ $0500	; signed Y offsets (128 bytes)
@@ -54,9 +58,42 @@ main:
 	lda	$fd0a
 	bne	.vbl
 
+screen_loop:
+	lda #VID_BASE
+	sta ptr+1
+	stz ptr
 
+; Start loop over all pixels
+	lda	offset
+	ldy	#0
+	ldx	#32
+	nop
+.loop
 
-	inc	BLUERED0
+; Calculate color of pixel in A
+	tya
+	clc
+	adc offset
+	lsr
+	lsr
+	and #$0f
+;	sta temp
+;	asl
+;	asl
+;	asl
+;	asl
+;	ora temp
+
+	sta	(ptr),y 	; Store color in current pixel
+;	inc
+	iny
+	bne	.loop
+	inc	ptr+1
+	dex
+	bne	.loop
+
+	inc	BLUERED1
+	inc offset
 	jmp	main
 
 ;;; ----------------------------------------
