@@ -48,28 +48,17 @@ main:
 	lda	$fd0a
 	bne	.vbl
 
-screen_loop:
-	lda #VID_BASE_HI
-	sta ptr+1
-	stz ptr
+	ldx #8
+.7	lda $FFEF,x
+	LDY $FFE6,x
+	STA $FC00,y
+	DEX
+	BPL .7
+	STZ CPUSLEEP		; Reset CPU bus request flip flop (draw INSERT GAME sprite)
+	STZ SDONEACK		; Clear SDONEACK
 
-; Start loop over all pixels
-	ldy	#0
-	ldx	#32
-.loop
-
-; Calculate color of pixel in A
-	lda $FF54
-
-	sta	(ptr),y 	; Store color in current pixel
-	iny
-	bne	.loop
-	inc	ptr+1
-	dex
-	bne	.loop
-
-	inc	BLUERED1
-
+.8 
+	bra .8
 	jmp	main
 
 ;;; ----------------------------------------
