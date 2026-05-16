@@ -41,13 +41,6 @@ Start::
 	dex
 	bpl	.pal
 
-;	ldx	#15
-;.scb
-;	lda	$5082,x
-;	sta	SPR_BASE,x
-;	dex
-;	bpl	.scb
-
 ;;;------------------------------
 main:
 
@@ -59,20 +52,14 @@ main:
 
 	ldx #8
 .7	lda $FFEF,x
-	LDY $FFE6,x
-	STA $FC00,y
-	DEX
-	;CMP #1
-;	BNE .7
-	BPL .7
-	STZ CPUSLEEP		; Reset CPU bus request flip flop (draw INSERT GAME sprite)
-	STZ SDONEACK		; Clear SDONEACK
-.5
-	lda SPRSYS
-	lsr
-	bcs .5
+	ldy $FFE6,x
+	sta $FC00,y
+	dex
+;	bne .7
+	bpl .7
+	stz CPUSLEEP		; Reset CPU bus request flip flop (draw INSERT GAME sprite)
+	stz SDONEACK		; Clear SDONEACK
 
-.8
 	dec temp
 	bne .9
 
@@ -84,20 +71,6 @@ main:
 	sta $5091
 
 .9 	jmp	main
-
-;;	lda #$20
-;;	sta VIDBAS+1
-;;	stz VIDBAS
-;
-;	lda #$01
-;	sta SPRGO
-;	stz SDONEACK		; Clear SDONEACK
-;	stz CPUSLEEP
-;.9	lda SPRSYS
-;	lsr
-;	bcs .9
-;;	inc $5089
-
 
 ;;; ----------------------------------------
 ;;; 16-entry hue ramp palette
